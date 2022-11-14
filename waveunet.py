@@ -66,8 +66,10 @@ class DownsamplingBlock(nn.Module):
     def forward(self, x):
         # PREPARING SHORTCUT FEATURES
         shortcut = x
+        print(f'here: {shortcut}')
         for conv in self.pre_shortcut_convs:
             shortcut = conv(shortcut)
+            print(shortcut)
 
         # PREPARING FOR DOWNSAMPLING
         out = shortcut
