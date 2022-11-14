@@ -156,16 +156,17 @@ class ConvLayer(nn.Module):
             assert(n_outputs % NORM_CHANNELS == 0)
             self.norm = nn.GroupNorm(n_outputs // NORM_CHANNELS, n_outputs)
         elif conv_type == "bn":
-            self.norm = nn.BatchNorm1d(n_outputs, momentum=0.01)
+            self.norm = nn.BatchNorm1d(5186, momentum=0.01)
         # Add you own types of variations here!
 
     def forward(self, x):
         # Apply the convolution
+        print(x)
         if self.conv_type == "gn" or self.conv_type == "bn":
-            print("Gn")
-            print(self.norm((self.filter(x))))
+            # print("Gn")
+            # print(self.norm((self.filter(x))))
             out = F.relu(self.norm((self.filter(x))))
-            print(out)
+            # print(out)
         else: # Add your own variations here with elifs conditioned on "conv_type" parameter!
             assert(self.conv_type == "normal")
             out = F.leaky_relu(self.filter(x))
