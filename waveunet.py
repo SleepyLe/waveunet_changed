@@ -163,8 +163,10 @@ class WaveunetLyrics(nn.Module):
 
         # DOWNSAMPLING BLOCKS
         for block in module.downsampling_blocks:
+            print("herreeeee")
+            print(block)
             out, short = block(out)
-            # print(out.shape, short.shape)
+            print(out.shape, short.shape)
             shortcuts.append(short)
 
         print("after downsampling blocks:", out.shape, len(shortcuts))
