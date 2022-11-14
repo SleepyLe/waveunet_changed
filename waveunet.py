@@ -71,10 +71,12 @@ class DownsamplingBlock(nn.Module):
 
         # PREPARING FOR DOWNSAMPLING
         out = shortcut
-
+        print("====="*10)
+        print(out)
+        print("====="*10)
         # DOWNSAMPLING
         out = self.downconv(out)
-
+        print("+"*10)
         return out, shortcut
 
     def get_input_size(self, output_size):
