@@ -170,11 +170,12 @@ class ConvLayer(nn.Module):
         else: # Add your own variations here with elifs conditioned on "conv_type" parameter!
             assert(self.conv_type == "normal")
             out = F.leaky_relu(self.filter(x))
-        print(out)
+        print(f'out: {out}')
         return out
 
     def get_input_size(self, output_size):
         # Strided conv/decimation
+        print('run here?')
         if not self.transpose:
             curr_size = (output_size - 1)*self.stride + 1 # o = (i-1)//s + 1 => i = (o - 1)*s + 1
         else:
@@ -191,6 +192,7 @@ class ConvLayer(nn.Module):
         return curr_size
 
     def get_output_size(self, input_size):
+        print('run here1?')
         # Transposed
         if self.transpose:
             assert(input_size > 1)
