@@ -170,6 +170,7 @@ class ConvLayer(nn.Module):
         else: # Add your own variations here with elifs conditioned on "conv_type" parameter!
             assert(self.conv_type == "normal")
             out = F.leaky_relu(self.filter(x))
+        print(out)
         return out
 
     def get_input_size(self, output_size):
