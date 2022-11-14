@@ -162,7 +162,10 @@ class ConvLayer(nn.Module):
     def forward(self, x):
         # Apply the convolution
         if self.conv_type == "gn" or self.conv_type == "bn":
+            print("Gn")
+            print(self.norm((self.filter(x))))
             out = F.relu(self.norm((self.filter(x))))
+            print(out)
         else: # Add your own variations here with elifs conditioned on "conv_type" parameter!
             assert(self.conv_type == "normal")
             out = F.leaky_relu(self.filter(x))
