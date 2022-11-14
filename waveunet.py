@@ -69,7 +69,7 @@ class DownsamplingBlock(nn.Module):
         print(f'here: {shortcut}')
         for conv in self.pre_shortcut_convs:
             shortcut = conv(shortcut)
-            print(shortcut)
+            print(f'after: {shortcut}')
 
         # PREPARING FOR DOWNSAMPLING
         out = shortcut
@@ -163,12 +163,12 @@ class WaveunetLyrics(nn.Module):
         shortcuts = []
         out = x
 
-        print(x.shape)
+        # print(x.shape)
 
         # DOWNSAMPLING BLOCKS
         for block in module.downsampling_blocks:
             print("herreeeee")
-            print(block)
+            # print(block)
             out, short = block(out)
             print(out.shape, short.shape)
             shortcuts.append(short)
