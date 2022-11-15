@@ -61,7 +61,7 @@ class DownsamplingBlock(nn.Module):
         if res == "fixed":
             self.downconv = Resample1d(n_outputs, 15, stride) # Resampling with fixed-size sinc lowpass filter
         else:
-            self.downconv = ConvLayer(n_outputs, n_outputs, kernel_size, stride, conv_type)
+            self.downconv = ConvLayer(1, 29, kernel_size, stride, conv_type)
 
     def forward(self, x):
         # PREPARING SHORTCUT FEATURES

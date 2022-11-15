@@ -102,7 +102,8 @@ class Resample1d(nn.Module):
                 out = out[:,:,diff_steps//2:-diff_steps//2]
         else:
             # assert(input_size % self.stride == 1) no longer need such settings
-            out = F.conv1d(out, 29, stride=self.stride, padding=0, groups=self.channels)
+            print(self.filter)
+            out = F.conv1d(out, self.filter, stride=self.stride, padding=0, groups=self.channels)
 
         return out
 
