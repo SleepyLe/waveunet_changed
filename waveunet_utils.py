@@ -150,13 +150,13 @@ class ConvLayer(nn.Module):
         if self.transpose:
             self.filter = nn.ConvTranspose1d(n_inputs, n_outputs, self.kernel_size, stride, padding=kernel_size-1)
         else:
-            self.filter = nn.Conv1d(n_inputs, n_outputs, self.kernel_size, stride)
+            self.filter = nn.Conv1d(8, 29, self.kernel_size, stride)
 
         if conv_type == "gn":
             assert(n_outputs % NORM_CHANNELS == 0)
             self.norm = nn.GroupNorm(n_outputs // NORM_CHANNELS, n_outputs)
         elif conv_type == "bn":
-            self.norm = nn.BatchNorm1d(5186, momentum=0.01)
+            self.norm = nn.BatchNorm1d(2593, momentum=0.01)
         # Add you own types of variations here!
 
     def forward(self, x):
