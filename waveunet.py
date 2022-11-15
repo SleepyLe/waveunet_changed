@@ -68,9 +68,9 @@ class DownsamplingBlock(nn.Module):
         shortcut = x
         # print(f'here: {shortcut}')
         for conv in self.pre_shortcut_convs:
-            print(f'conv: {conv}')
+            # print(f'conv: {conv}')
             shortcut = conv(shortcut)
-            print(f'after: {shortcut}')
+            # print(f'after: {shortcut}')
 
         # PREPARING FOR DOWNSAMPLING
         out = shortcut
