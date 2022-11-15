@@ -79,7 +79,10 @@ class Resample1d(nn.Module):
 
     def forward(self, x):
         # Pad here if not using transposed conv
-        input_size = x.shape[2]
+        print(x)
+        print(x.shape)
+        # input_size = x.shape[2]
+        input_size = x.shape
         if self.padding != "valid":
             num_pad = (self.kernel_size-1)//2
             out = F.pad(x, (num_pad, num_pad), mode=self.padding)
@@ -163,15 +166,15 @@ class ConvLayer(nn.Module):
         # Apply the convolution
         print(x)
         if self.conv_type == "gn" or self.conv_type == "bn":
-            print("Gn")
-            print(self.norm((self.filter(x))))
+            # print("Gn")
+            # print(self.norm((self.filter(x))))
             out = F.relu(self.norm((self.filter(x))))
-            print(f'out: {out}')
+            # print(f'out: {out}')
             # print(out)
         else: # Add your own variations here with elifs conditioned on "conv_type" parameter!
             assert(self.conv_type == "normal")
             out = F.leaky_relu(self.filter(x))
-        print(f'out: {out}')
+        # print(f'out: {out}')
         return out
 
     def get_input_size(self, output_size):
