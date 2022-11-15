@@ -165,12 +165,15 @@ class ConvLayer(nn.Module):
 
     def forward(self, x):
         # Apply the convolution
-        print(x)
+        # x =  x.cuda()
         if self.conv_type == "gn" or self.conv_type == "bn":
             # print("Gn")
             # print(self.norm((self.filter(x))))
-            filter = nn.Conv1d(x.shape[0], 29, 15, 2)
-            out = F.relu(self.norm((filter(x))))
+            # filter = nn.Conv1d(x.shape[0], 29, 15, 1)
+            try:
+                out = F.relu(self.norm((self.filter(x))))
+            except:
+                next
             # print(f'out: {out}')
             # print(out)
         else: # Add your own variations here with elifs conditioned on "conv_type" parameter!
