@@ -156,7 +156,7 @@ class ConvLayer(nn.Module):
             assert(n_outputs % NORM_CHANNELS == 0)
             self.norm = nn.GroupNorm(n_outputs // NORM_CHANNELS, n_outputs)
         elif conv_type == "bn":
-            self.norm = nn.BatchNorm1d(2593, momentum=0.01)
+            self.norm = nn.BatchNorm1d(5186, momentum=0.01)
         # Add you own types of variations here!
 
     def forward(self, x):
