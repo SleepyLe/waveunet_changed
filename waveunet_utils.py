@@ -75,7 +75,7 @@ class Resample1d(nn.Module):
 
         filter = build_sinc_filter(kernel_size, cutoff)
 
-        self.filter = torch.nn.Parameter(torch.from_numpy(np.repeat(np.reshape(filter, [1, 1, kernel_size]), 29, axis=0)), requires_grad=trainable)
+        self.filter = torch.nn.Parameter(torch.from_numpy(np.repeat(np.reshape(filter, [1, 1, kernel_size]), 8, axis=0)), requires_grad=trainable)
 
     def forward(self, x):
         # Pad here if not using transposed conv
@@ -103,7 +103,7 @@ class Resample1d(nn.Module):
         else:
             # assert(input_size % self.stride == 1) no longer need such settings
             # print(self.filter)
-            out = F.conv1d(out, self.filter, stride=self.stride, padding=0, groups=29)
+            out = F.conv1d(out, self.filter, stride=self.stride, padding=0, groups=8)
 
         return out
 
@@ -173,11 +173,11 @@ class ConvLayer(nn.Module):
             # filter = nn.Conv1d(x.shape[0], 29, 15, 1)
             out = F.relu(self.norm((self.filter(x))))
             # print(f'out: {out}')
-            # print(out)
+            print("hehe still run")
         else: # Add your own variations here with elifs conditioned on "conv_type" parameter!
             assert(self.conv_type == "normal")
             out = F.leaky_relu(self.filter(x))
-        print(f'out in line 183: {out}')
+        # print(f'out in line 183: {out}')
         return out
 
     def get_input_size(self, output_size):
