@@ -102,7 +102,7 @@ class Resample1d(nn.Module):
                 out = out[:,:,diff_steps//2:-diff_steps//2]
         else:
             # assert(input_size % self.stride == 1) no longer need such settings
-            print(self.filter)
+            # print(self.filter)
             out = F.conv1d(out, self.filter, stride=self.stride, padding=0, groups=29)
 
         return out
@@ -166,6 +166,7 @@ class ConvLayer(nn.Module):
     def forward(self, x):
         # Apply the convolution
         # x =  x.cuda()
+        out = x
         if self.conv_type == "gn" or self.conv_type == "bn":
             # print("Gn")
             # print(self.norm((self.filter(x))))
@@ -179,7 +180,7 @@ class ConvLayer(nn.Module):
         else: # Add your own variations here with elifs conditioned on "conv_type" parameter!
             assert(self.conv_type == "normal")
             out = F.leaky_relu(self.filter(x))
-        # print(f'out: {out}')
+        print(f'out in line 183: {out}')
         return out
 
     def get_input_size(self, output_size):
