@@ -74,9 +74,9 @@ class DownsamplingBlock(nn.Module):
 
         # PREPARING FOR DOWNSAMPLING
         out = shortcut
-        # print("====="*10)
+        print("====="*10)
         # print(out)
-        # print("====="*10)
+        print("====="*10)
         # DOWNSAMPLING
         out = self.downconv(out)
         # print("+"*10)
