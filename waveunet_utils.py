@@ -164,7 +164,7 @@ class ConvLayer(nn.Module):
         print(x)
         if self.conv_type == "gn" or self.conv_type == "bn":
             print("Gn")
-            # print(self.norm((self.filter(x))))
+            print(self.norm((self.filter(x))))
             out = F.relu(self.norm((self.filter(x))))
             print(f'out: {out}')
             # print(out)
