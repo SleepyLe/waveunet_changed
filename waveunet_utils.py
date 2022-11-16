@@ -75,7 +75,7 @@ class Resample1d(nn.Module):
 
         filter = build_sinc_filter(kernel_size, cutoff)
 
-        self.filter = torch.nn.Parameter(torch.from_numpy(np.repeat(np.reshape(filter, [1, 1, kernel_size]), 29, axis=0)), requires_grad=trainable)
+        self.filter = torch.nn.Parameter(torch.from_numpy(np.repeat(np.reshape(filter, [1, 1, kernel_size]), 8, axis=0)), requires_grad=trainable)
 
     def forward(self, x):
         # Pad here if not using transposed conv
